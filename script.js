@@ -42,18 +42,23 @@ class Ball {
   }
 }
 
-let balls = [];
-for (let i = 0; i < 100; i++) {
-  balls.push(new Ball());
+class Canvas {
+  constructor() {
+    this.balls = [];
+    for (let i = 0; i < 10; i++) {
+      this.balls.push(new Ball());
+    }
+  }
+
+  animate() {
+    c.clearRect(0, 0, screen.width, screen.height);
+    this.balls.forEach((ball) => ball.update());
+    requestAnimationFrame(this.animate.bind(this));
+  }
 }
 
-function animate() {
-  c.clearRect(0, 0, screen.width, screen.height);
-  balls.forEach((ball) => ball.update());
-  requestAnimationFrame(this.animate);
-}
-
-animate();
+let mycan = new Canvas();
+mycan.animate();
 
 function rnd(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
