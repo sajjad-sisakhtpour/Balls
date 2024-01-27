@@ -24,7 +24,6 @@ class Ball {
     this.draw();
   }
   draw() {
-    c.clearRect(0, 0, screen.width, screen.height);
     c.beginPath();
     c.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
     c.fillStyle = this.color;
@@ -43,20 +42,18 @@ class Ball {
   }
 }
 
-class Canvas {
-  constructor() {
-    this.ball = new Ball();
-  }
-
-  animate() {
-    this.ball.update();
-    requestAnimationFrame(this.animate.bind(this));
-  }
+let balls = [];
+for (let i = 0; i < 100; i++) {
+  balls.push(new Ball());
 }
 
-let mycan = new Canvas();
+function animate() {
+  c.clearRect(0, 0, screen.width, screen.height);
+  balls.forEach((ball) => ball.update());
+  requestAnimationFrame(this.animate);
+}
 
-mycan.animate();
+animate();
 
 function rnd(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
