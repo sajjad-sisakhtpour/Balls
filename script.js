@@ -12,13 +12,15 @@ canvas.width = screen.width;
 canvas.height = screen.height;
 
 class Ball {
-  constructor() {
-    this.r = 20;
-    this.x = rnd(0 + this.r, screen.width - this.r);
-    this.y = rnd(0 + this.r, screen.height - this.r);
-    this.color = `rgb(${Math.random() * 255},${Math.random() * 255},${
-      Math.random() * 255
-    })`;
+  constructor(x, y, r, color) {
+    this.r = r || 20;
+    this.x = x || rnd(0 + this.r, screen.width - this.r);
+    this.y = y || rnd(0 + this.r, screen.height - this.r);
+    this.color =
+      color ||
+      `rgb(${Math.random() * 255},${Math.random() * 255},${
+        Math.random() * 255
+      })`;
     this.dx = (Math.random() - 0.5) * 1;
     this.dy = (Math.random() - 0.5) * 1;
     this.draw();
@@ -63,3 +65,8 @@ mycan.animate();
 function rnd(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+// EventListeners
+window.addEventListener("click", (e) =>
+  mycan.balls.push(new Ball(e.clientX, e.clientY))
+);
