@@ -1,38 +1,62 @@
 let canvas = document.querySelector("canvas");
-let screen = {
+this.screen = {
   width: window.innerWidth,
   height: window.innerHeight,
+};
+this.mouse = {
+  x: screen.width / 2,
+  y: screen.height / 2,
 };
 let c = canvas.getContext("2d");
 canvas.width = screen.width;
 canvas.height = screen.height;
 
-let r = 20;
-let x = rnd(0+r,screen.width-r);
-let y = rnd(0+r,screen.height-r);
-let color=`rgb(${Math.random()*255},${Math.random()*255},${Math.random()*255})`
-dx = (Math.random()-0.5) * 1;
-dy = (Math.random()-0.5) * 1;
-
-
-function animate() {
-  c.beginPath();
-  c.clearRect(0, 0, screen.width, screen.height);
-  c.arc(x, y, r, 0, 2 * Math.PI, false);
-  c.fillStyle = color;
-  c.fill();
-  x += dx;
-  if (x + r > screen.width || x - r < 0) {
-    dx = -dx;
+class Ball {
+  constructor() {
+    this.r = 20;
+    this.x = rnd(0 + this.r, screen.width - this.r);
+    this.y = rnd(0 + this.r, screen.height - this.r);
+    this.color = `rgb(${Math.random() * 255},${Math.random() * 255},${
+      Math.random() * 255
+    })`;
+    this.dx = (Math.random() - 0.5) * 1;
+    this.dy = (Math.random() - 0.5) * 1;
+    this.draw();
   }
-  y += dy;
-  if (y + r > screen.height || y - r < 0) {
-    dy = -dy;
+  draw() {
+    c.clearRect(0, 0, screen.width, screen.height);
+    c.beginPath();
+    c.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
+    c.fillStyle = this.color;
+    c.fill();
   }
-  requestAnimationFrame(animate);
+  update() {
+    this.x += this.dx;
+    if (this.x + this.r > screen.width || this.x - this.r < 0) {
+      this.dx = -this.dx;
+    }
+    this.y += this.dy;
+    if (this.y + this.r > screen.height || this.y - this.r < 0) {
+      this.dy = -this.dy;
+    }
+    this.draw();
+  }
 }
 
-animate();
+class Canvas {
+  constructor() {
+    this.ball = new Ball();
+  }
+
+  animate() {
+    this.ball.update();
+    requestAnimationFrame(this.animate.bind(this));
+  }
+}
+
+let mycan = new Canvas();
+
+mycan.animate();
 
 function rnd(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
