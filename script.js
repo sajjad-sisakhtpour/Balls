@@ -9,8 +9,8 @@ canvas.height = screen.height;
 
 let r = 20;
 let x = 20;
-dx = 0.5 * 1;
 let y = 20;
+dx = 0.5 * 1;
 dy = 0.5 * 1;
 
 function animate() {
@@ -31,3 +31,7 @@ function animate() {
 }
 
 animate();
+
+function rnd(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + max);
+}
