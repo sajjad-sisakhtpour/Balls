@@ -19,10 +19,10 @@ function animate() {
   c.arc(x, y, r, 0, 2 * Math.PI, false);
   c.fillStyle = "red";
   c.fill();
-  // x += dx;
-  // if (x + r > screen.width || x - r < 0) {
-  //   dx = -dx;
-  // }
+  x += dx;
+  if (x + r > screen.width || x - r < 0) {
+    dx = -dx;
+  }
   y += dy;
   if (y + r > screen.height || y - r < 0) {
     dy = -dy;
