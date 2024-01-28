@@ -12,15 +12,14 @@ canvas.width = screen.width;
 canvas.height = screen.height;
 
 class Ball {
-  constructor(x, y, r, color) {
-    this.r = r || 20;
+  constructor(x, y) {
+    this.br = 20;
+    this.r = this.br;
     this.x = x || rnd(0 + this.r, screen.width - this.r);
     this.y = y || rnd(0 + this.r, screen.height - this.r);
-    this.color =
-      color ||
-      `rgb(${Math.random() * 255},${Math.random() * 255},${
-        Math.random() * 255
-      })`;
+    this.color = `rgb(${Math.random() * 255},${Math.random() * 255},${
+      Math.random() * 255
+    })`;
     this.dx = (Math.random() - 0.5) * 1;
     this.dy = (Math.random() - 0.5) * 1;
     this.draw();
@@ -47,7 +46,7 @@ class Ball {
 class Canvas {
   constructor() {
     this.balls = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 100; i++) {
       this.balls.push(new Ball());
     }
   }
@@ -70,3 +69,16 @@ function rnd(min, max) {
 window.addEventListener("click", (e) =>
   mycan.balls.push(new Ball(e.clientX, e.clientY))
 );
+
+window.addEventListener("mousemove", (e) => {
+  mycan.balls.forEach((ball) => {
+    let d = Math.sqrt(
+      Math.pow(e.clientX - ball.x, 2) + Math.pow(e.clientY - ball.y, 2)
+    );
+    if (d < 100 && ball.r < ball.br * 4) {
+      ball.r += 1;
+    } else if (ball.r > ball.br) {
+      ball.r -= 1;
+    }
+  });
+});
