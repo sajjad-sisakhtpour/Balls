@@ -21,7 +21,9 @@ class Ball {
       Math.random() * 255
     })`;
     this.dx = (Math.random() - 0.5) * 1;
-    this.dy = (Math.random() - 0.5) * 1;
+    this.dy = Math.random() * 1;
+    this.g = 0.04;
+    this.f = 0.7;
     this.draw();
   }
   draw() {
@@ -31,14 +33,16 @@ class Ball {
     c.fill();
   }
   update() {
-    this.x += this.dx;
-    if (this.x + this.r > screen.width || this.x - this.r < 0) {
+    if (this.y + this.dy + this.r > screen.height) {
+      this.dy = -this.dy * this.f;
+      this.dx = -this.dx * this.f;
+    }
+    if (this.x + this.dx + this.r > screen.width || this.x + this.dx < 0) {
       this.dx = -this.dx;
     }
     this.y += this.dy;
-    if (this.y + this.r > screen.height || this.y - this.r < 0) {
-      this.dy = -this.dy;
-    }
+    this.dy += this.g;
+    this.x += this.dx;
     this.draw();
   }
 }
@@ -46,7 +50,7 @@ class Ball {
 class Canvas {
   constructor() {
     this.balls = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 20; i++) {
       this.balls.push(new Ball());
     }
   }
@@ -77,6 +81,7 @@ window.addEventListener("mousemove", (e) => {
     );
     if (d < 100 && ball.r < ball.br * 4) {
       ball.r += 1;
+      ball.y -= 4;
     } else if (ball.r > ball.br) {
       ball.r -= 1;
     }
