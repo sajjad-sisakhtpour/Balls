@@ -77,5 +77,4 @@ For questions or feedback, feel free to contact me:
 Check out the live demo [here](https://your-live-demo-link.com) (replace with actual link).
 
 ## Screenshots
-![Screenshot 1](screenshots/Screenshot-1.png)  
-*Description of screenshot 1.*
+![Screenshot 1](screenshots/Screenshot-1.png)
