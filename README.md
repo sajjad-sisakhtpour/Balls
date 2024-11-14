@@ -82,4 +82,3 @@ Check out the live demo [here](https://your-live-demo-link.com) (replace with ac
 
 ![Screenshot 2](https://your-screenshot-link2.com)  
 *Description of screenshot 2.*
-```
