@@ -74,7 +74,7 @@ For questions or feedback, feel free to contact me:
 - **LinkedIn**: [linkedin.com/in/sajad-sisakht-pour](https://ir.linkedin.com/in/sajad-sisakht-pour)
 
 ## Live Demo
-Check out the live demo [here](https://sajjad-sisakhtpour.github.io/balls) (replace with actual link).
+Check out the live demo [here](https://sajjad-sisakhtpour.github.io/Balls/) (replace with actual link).
 
 ## Screenshots
 ![Screenshot 1](screenshots/Screenshot-1.png)
